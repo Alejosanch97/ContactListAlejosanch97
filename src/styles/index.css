@@ -2,5 +2,12 @@
     General Styles
 */
 img {
-    width: 150px;
+    width: 180px;
 }
+
+body {
+    background-color: #131111; /* Color hexadecimal */
+  }
+
+
+
