@@ -12,7 +12,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contacts:[],
+			contact:{},
+			contactToDelete:{}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -24,6 +27,133 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
+
+			seeContact: (contact) => {
+				setStore({contact:contact})
+			},
+
+			setContactToDelete: (contact) => {
+				setStore({contactToDelete:contact})
+
+			},
+
+			getAllContacts: () =>{
+				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97', {
+					method: "GET",
+				})
+				.then((response)=> {
+					if (response.status === 404) {
+						createAgenda();
+					}
+					return response.json()
+				})
+				.then((data)=>{
+					setStore({contacts:data.contacts});})
+				.catch((error)=>{
+					console.log(error)}
+				)
+				// console.log(response);
+			},
+
+			createAgenda: () =>{
+				// console.log(fullName,email,address,phone);
+			
+				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97', {
+					method: "POST",
+					headers: {
+						"content-type": "application/json"
+					}
+				})
+				.then((response)=>{
+
+					return response.json()})
+				.then((data)=>{
+
+					console.log(data);})
+				.catch((error)=>{
+					console.log(error)}
+				)
+			},
+
+			createContact: (fullName,email,phone,address) =>{
+				// console.log(fullName,email,address,phone);
+			
+				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts', {
+					method: "POST",
+					body: JSON.stringify(				
+						{
+						"name": fullName,
+						"phone":phone,
+						"email": email,
+						"address":address
+						
+					}),
+					headers: {
+						"content-type": "application/json"
+					}
+				})
+				.then((response)=>{
+
+					return response.json()})
+				.then((data)=>{
+					console.log(data);})
+				.catch((error)=>{
+					console.log(error)}
+				)
+			},
+
+			deleteContact: (id) =>{
+				// console.log(fullName,email,address,phone);
+			
+				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts/'+id, {
+					method: "DELETE",
+					headers: {
+						"content-type": "application/json"
+					}
+				})
+				.then((response)=>{
+
+					return response.json()})
+				.then((data)=>{
+					getAllContacts();
+					console.log(data);})
+				.catch((error)=>{
+					console.log(error)}
+				)
+			},
+
+			editContact: (fullName,email,phone,address,id) =>{
+				console.log(fullName,email,address,phone,id);
+			
+				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts/'+id, {
+					method: "PUT",
+					body: JSON.stringify(				
+						{
+						"name": fullName,
+						"phone":phone,
+						"email": email,
+						"address":address
+						
+					}),
+					headers: {
+						"content-type": "application/json"
+					}
+				})
+				.then((response)=>{
+
+					return response.json()})
+				.then((data)=>{
+					console.log(data);})
+				.catch((error)=>{
+					console.log(error)}
+				)
+			},
+
+
+			// useEffect:()=>{
+			// 	getAllContacts()
+			// },[]),
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
