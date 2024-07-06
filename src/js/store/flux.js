@@ -32,12 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({contact:contact})
 			},
 
-			setContactToDelete: (contact) => {
-				setStore({contactToDelete:contact})
-
-			},
-
-			getAllContacts: () =>{
+			getAllContacts: async () =>{
 				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97', {
 					method: "GET",
 				})
@@ -77,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			createContact: (fullName,email,phone,address) =>{
 				// console.log(fullName,email,address,phone);
-			
+							
 				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts', {
 					method: "POST",
 					body: JSON.stringify(				
@@ -173,4 +168,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-

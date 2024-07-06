@@ -1,7 +1,7 @@
 import React, { useState , useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-
+import "../../styles/addContact.css";
 
 
 export const AddContact = () => {
@@ -15,18 +15,24 @@ export const AddContact = () => {
     const navigate = useNavigate()
 
     function handleSubmit() {
-        
+      // Validación de campos vacíos
+      if (!fullName.trim() || !email.trim() || !phone.trim() || !address.trim()) {
+        event.preventDefault(); // Prevenir la recarga de la página al aceptar la alerta
+        alert("You haven't written any information. Please fill out the form.");
+        return; // Prevenir la redirección si hay campos vacíos
+      }
         actions.createContact(fullName,email,address,phone);
+        actions.getAllContacts();
         navigate("/");
     }
     
     return(
     
    <>
-  <div className="container py-4">  {/* Added container and padding */}
+  <div className="container py-2">  {/* Added container and padding */}
   <div className="row justify-content-center">  {/* Center the form horizontally */}
     <div className="col-md-6 col-sm-8">  {/* Limit form width on medium and small screens */}
-      <h1 className="text-center mb-4">Add a new contact</h1> {/* Centered heading with margin */}
+    <div className="form-container"><h1 className="text-center mb-4">Add a new contact</h1> {/* Centered heading with margin */}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputName" className="form-label">Full name</label>
@@ -49,6 +55,7 @@ export const AddContact = () => {
           <Link to="/" className="btn btn-link">or get back to contacts</Link>
         </div>
       </form>
+    </div>
     </div>
   </div>
 </div>

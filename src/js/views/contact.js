@@ -1,9 +1,10 @@
 import React, { Component, useContext, useEffect, useState, useSyncExternalStore } from "react";
-
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { ModalDelete } from "../component/modalDelete";
 import { useNavigate } from "react-router-dom";
+import "../../styles/contact.css";
+
 
 export const Contact = () => {
   const [state, setState] = useState({
@@ -41,7 +42,7 @@ export const Contact = () => {
                 <div className="row g-0">
                   <div className="col-2">
                     <img
-                      src="https://i.pinimg.com/564x/57/71/23/57712343579fc7b5e42a839f4a8f339d.jpg"
+                      src="https://i.pinimg.com/564x/04/48/cc/0448cc1b39145982fe89fbdca18f52dd.jpg"
                       className="img-fluid rounded-circle p-3"
                       alt="..."
                     />
@@ -58,7 +59,7 @@ export const Contact = () => {
                   <div className="justify-content-end mt-5 me-4">
                     <button
                       type="button"
-                      className="btn btn-sm btn-primary me-2 rounded-pill"
+                      className="btn btn-sm btn-edit"
                       onClick={() => {
                         actions.seeContact(contact);
                         navigate("/edit-contact");
@@ -68,10 +69,10 @@ export const Contact = () => {
                     </button>
                     <button
                       type="button"
-                      className="btn btn-sm btn-danger rounded-pill"
+                      className="btn btn-sm btn-delete"
                       onClick={() => {
                         showModal();
-                        actions.setContactToDelete(contact);
+                        actions.deleteContact(contact.id);
                       }}
                     >
                       <i className="fa fa-trash"></i>

@@ -17,7 +17,7 @@ export const ModalDelete = (props) => {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={()=>{props.setModal({view:"none"})}}></button>
                 </div>
                 <div className="modal-body">
-                    <p>If you delete this person, it will be no longer your friend!</p>
+                    <p>If you delete this person, it will be no longer in your contacts!</p>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{props.setModal({view:"none"})}}>Close</button>
@@ -26,7 +26,7 @@ export const ModalDelete = (props) => {
                         actions.deleteContact(store.contactToDelete.id)
                         props.setModal({view:"none"})
                         window.location.reload(false)
-                        }}>Erase him!</button>
+                        }}>Erase!</button>
                 </div>
             </div>
         </div>
