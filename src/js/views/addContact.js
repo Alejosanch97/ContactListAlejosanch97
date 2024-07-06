@@ -21,7 +21,7 @@ export const AddContact = () => {
         alert("You haven't written any information. Please fill out the form.");
         return; // Prevenir la redirección si hay campos vacíos
       }
-        actions.createContact(fullName,email,address,phone);
+        actions.createContact(fullName,email,phone,address);
         actions.getAllContacts();
         navigate("/");
     }

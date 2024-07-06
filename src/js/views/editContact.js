@@ -25,8 +25,8 @@ console.log(store.contact);
             alert("You have a blank space, please complete the required field(s)");
             return; // Prevenir la redirección si hay campos vacíos
         }
-        e.preventDefault()
-        actions.editContact(fullName,email,address,phone,id);
+        
+        actions.editContact(fullName,email,phone,address,id);
         actions.getAllContacts();
         navigate("/");
     }
