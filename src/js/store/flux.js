@@ -50,8 +50,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log(response);
 			},
 
-			createAgenda: () =>{
-				// console.log(fullName,email,address,phone);
+			createAgenda: async () =>{
+				
 			
 				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97', {
 					method: "POST",
@@ -70,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)
 			},
 
-			createContact: (fullName,email,phone,address) =>{
+			createContact: async (fullName,email,phone,address) =>{
 				// console.log(fullName,email,address,phone);
 							
 				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts', {
@@ -97,7 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)
 			},
 
-			deleteContact: (id) =>{
+			deleteContact: async (id) =>{
 				// console.log(fullName,email,address,phone);
 			
 				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts/'+id, {
@@ -117,7 +117,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				)
 			},
 
-			editContact: (fullName,email,phone,address,id) =>{
+			editContact: async (fullName,email,phone,address,id) =>{
 				console.log(fullName,email,address,phone,id);
 			
 				fetch ('https://playground.4geeks.com/contact/agendas/alejosanch97/contacts/'+id, {

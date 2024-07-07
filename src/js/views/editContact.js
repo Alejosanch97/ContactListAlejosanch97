@@ -26,9 +26,12 @@ console.log(store.contact);
             return; // Prevenir la redirección si hay campos vacíos
         }
         
-        actions.editContact(fullName,email,phone,address,id);
-        actions.getAllContacts();
+        actions.editContact(fullName,email,phone,address,id)
+        .then(() => { // Call getAllContacts after successful creation
+            actions.getAllContacts();
+          })
         navigate("/");
+        
     }
     
     return(
