@@ -1,4 +1,4 @@
-import React, { useState , useContext} from "react";
+import React, { useState , useContext, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/editContact.css";
@@ -17,6 +17,10 @@ console.log(store.contact);
     
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        actions.getAllContacts(); // Fetch contacts on component mount
+      }, [actions]); // Only run when actions changes
     
     function handleSubmit(e) {
         // Validación de campos vacíos

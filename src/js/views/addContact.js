@@ -1,4 +1,4 @@
-import React, { useState , useContext} from "react";
+import React, { useState , useContext, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/addContact.css";
@@ -14,6 +14,10 @@ export const AddContact = () => {
     
     const navigate = useNavigate()
 
+    useEffect(() => {
+      actions.getAllContacts(); // Fetch contacts on component mount
+    }, [actions]); // Only run when actions changes
+
     function handleSubmit() {
       // Validación de campos vacíos
       if (!fullName.trim() || !email.trim() || !phone.trim() || !address.trim()) {
@@ -23,7 +27,7 @@ export const AddContact = () => {
       }
         actions.createContact(fullName,email,phone,address)
         .then(() => { // Call getAllContacts after successful creation
-          actions.getAllContacts();
+          useEffect();
         })
         navigate("/");
         
